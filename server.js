@@ -1,6 +1,7 @@
 const express = require('express');
+//Heroku port
+const PORT = process.env.PORT || 3001;
 const app = express();
-// const PORT = process.env.PORT || 3001;
 
 //link routes
 const apiRoutes = require('./routes/apiRoutes');
@@ -28,6 +29,6 @@ app.get('/api/notes', (req, res) => {
 
 
 //listen for requests
-app.listen(3001, () => {
-    console.log(`Listening on port 3001`);
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
 });
