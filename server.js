@@ -21,8 +21,11 @@ function createNewNote(body, notesArr) {
     notesArr.push(note);
 
     fs.writeFileSync(
-        path.join(__dirname, './')
-    )
+        path.join(__dirname, './db/db.json'),
+        JSON.stringify({ notes: notesArr }, null, 2)
+    );
+    // return finished code to post route for response
+    return note;
 }
 //validate notes
 
@@ -34,10 +37,16 @@ app.get('/api/notes', (req, res) => {
     res.json(notes);
 });
 
-//post notes
+//post notes with unique ID
 app.post('/api/notes', (req, res) => {
     console.log(req.body);
-    res.json(req.body);
+
+    //set id
+    // req.body.id = 
+
+    //add note to json file
+    const savedNote = createNewNote(req.body, notes);
+    res.json(savedNote);
 });
 
 //HTTP ROUTES
