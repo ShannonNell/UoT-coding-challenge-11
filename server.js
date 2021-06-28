@@ -1,11 +1,11 @@
 const express = require('express');
+const { notes } = require('./db/db');
+const fs = require('fs');
+const path = require('path');
+
 //Heroku port
 const PORT = process.env.PORT || 3001;
 const app = express();
-
-//link routes
-const apiRoutes = require('./routes/apiRoutes');
-const htmlRoutes = require('./routes/htmlRoutes');
 
 // //parse incoming string/array data
 // app.use(express.urlencoded({ extended: true }));
@@ -13,22 +13,29 @@ const htmlRoutes = require('./routes/htmlRoutes');
 // app.use(express.json());
 // app.use(express.static('public'));
 
-// // use api routes
-// app.use('/api', apiRoutes);
-// app.use('/', htmlRoutes);
+//create new note
 
-
-const { notes } = require('./db/db');
-
+//validate notes
 
 //get saved notes
 app.get('/api/notes', (req, res) => {    
     res.json(notes);
 });
 
+//delete note
 
+
+//get notes html
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+
+//get index html/wildcard
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 //listen for requests
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+    console.log(`API server now on port ${PORT}`);
 });
