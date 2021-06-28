@@ -27,8 +27,17 @@ function createNewNote(body, notesArr) {
     // return finished code to post route for response
     return note;
 }
-//validate notes
 
+//validate notes
+function validateNote(note) {
+    if(!note.title || typeof note.title !== 'string') {
+        return false;
+    }
+    if(!note.text || typeof note.text !=='string') {
+        return false;
+    }
+    return true;
+};
 
 //delete note
 
@@ -44,9 +53,14 @@ app.post('/api/notes', (req, res) => {
     //set id
     // req.body.id = 
 
-    //add note to json file
-    const savedNote = createNewNote(req.body, notes);
-    res.json(savedNote);
+    //if any data in req.body is incorrect, send 400 error back
+    if (!validateNote(req.body)) {
+        res.status(400).sendStatus('The note is not properly formatted.');
+    } else {
+        //add note to json file
+        const note = createNewNote(req.body, notes);
+        res.json(note);
+    }
 });
 
 //HTTP ROUTES
