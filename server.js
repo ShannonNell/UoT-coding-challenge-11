@@ -12,7 +12,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 //parse incoming JSON data
 app.use(express.json());
-// app.use(express.static('public'));
+// middleware to provide file path to loc in app
+app.use(express.static('public'));
 
 //create new note and add to json file
 function createNewNote(body, notesArr) {

@@ -7,6 +7,10 @@
     {
       "title": "A New Note",
       "text": "I am the storm."
+    },
+    {
+      "title": "Hello",
+      "text": "Finish post functionality first"
     }
   ]
 }
