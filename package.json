@@ -1,14 +1,24 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Description An application called Note Taker that can be sued to write and save notes. This application uses an Express.js back end and will save and retrieve note data from a JSON file.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
-  }
+    "express": "^4.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShannonNell/UoT-coding-challenge-11.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/ShannonNell/UoT-coding-challenge-11/issues"
+  },
+  "homepage": "https://github.com/ShannonNell/UoT-coding-challenge-11#readme"
 }
