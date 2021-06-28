@@ -2,6 +2,7 @@ const express = require('express');
 const { notes } = require('./db/db');
 const fs = require('fs');
 const path = require('path');
+const shortId = require('short-uuid');
 
 //Heroku port
 const PORT = process.env.PORT || 3001;
@@ -51,7 +52,8 @@ app.post('/api/notes', (req, res) => {
     console.log(req.body);
 
     //set id
-    // req.body.id = 
+    req.body.id = shortId.uuid();
+    // console.log(req.body.id);
 
     //if any data in req.body is incorrect, send 400 error back
     if (!validateNote(req.body)) {

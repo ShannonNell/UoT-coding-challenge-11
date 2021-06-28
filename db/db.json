@@ -7,6 +7,11 @@
     {
       "title": "A New Note",
       "text": "I am the storm."
+    },
+    {
+      "title": "A hopeful ID note",
+      "text": "Does this have an id associated with it?",
+      "id": "ac559229-4825-4e7a-bb37-ac05030ef3c2"
     }
   ]
 }
