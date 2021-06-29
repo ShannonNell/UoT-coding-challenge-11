@@ -1,5 +1,5 @@
 const express = require('express');
-const { notes } = require('./db/db');
+let { notes } = require('./db/db');
 const fs = require('fs');
 const path = require('path');
 const shortId = require('short-uuid');
@@ -40,7 +40,6 @@ function validateNote(note) {
     return true;
 };
 
-//delete note
 
 //get saved notes
 app.get('/api/notes', (req, res) => { 
@@ -50,11 +49,11 @@ app.get('/api/notes', (req, res) => {
 //post notes with unique ID
 app.post('/api/notes', (req, res) => {
     console.log(req.body);
-
+    
     //set id
     req.body.id = shortId.uuid();
     // console.log(req.body.id);
-
+    
     //if any data in req.body is incorrect, send 400 error back
     if (!validateNote(req.body)) {
         res.status(400).sendStatus('The note is not properly formatted.');
@@ -63,6 +62,26 @@ app.post('/api/notes', (req, res) => {
         const note = createNewNote(req.body, notes);
         res.json(note);
     }
+});
+
+//delete note
+app.delete('/api/notes/:id', function (req, res) {
+    let noteId = req.params.id;
+    let newId = 0;
+
+    console.log(`Deleting note with ID ${noteId}`);
+    //filter data of current note, return current note ID when note = noteId
+    notes = notes.filter(currentNote => {
+        return currentNote.id != noteId;
+    });
+    //for current note, change note ID to string and add new Id
+    for (currentNote of notes) {
+        currentNote.id = newId.toString();
+        newId++;
+    }
+    //write to files with updated json notes
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes));
+    res.json(notes);
 });
 
 //HTTP ROUTES

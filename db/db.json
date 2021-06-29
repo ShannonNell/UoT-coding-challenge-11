@@ -1,17 +1,14 @@
 {
   "notes": [
     {
-      "title": "Test Title",
-      "text": "Test text"
+      "title": "Note Number 1",
+      "text": "The quick brown fox jumped over the lazy cat.",
+      "id": "ddd1dff0-fcd2-4e7e-b7c1-62e4797da64d"
     },
     {
-      "title": "A New Note",
-      "text": "I am the storm."
-    },
-    {
-      "title": "A hopeful ID note",
-      "text": "Does this have an id associated with it?",
-      "id": "ac559229-4825-4e7a-bb37-ac05030ef3c2"
+      "title": "Note 2",
+      "text": "Journey before destination. Strength before weakness. Life before death.",
+      "id": "b69d0550-2ce0-44c7-8748-098062793d4e"
     }
   ]
 }
