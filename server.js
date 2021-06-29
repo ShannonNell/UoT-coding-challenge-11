@@ -1,5 +1,5 @@
 const express = require('express');
-let { notes } = require('./db/db');
+let { notes } = require('./db/db.json');
 const fs = require('fs');
 const path = require('path');
 const shortId = require('short-uuid');
@@ -16,14 +16,18 @@ app.use(express.json());
 app.use(express.static('public'));
 
 //create new note and add to json file
-function createNewNote(body, notesArr) {
-    console.log(body);
+function createNewNote(body) {
+    // console.log(body);
     const note = body;
-    notesArr.push(note);
+    let currentNotes = fs.readFileSync('./db/db.json');
+        currentNotes = JSON.parse(currentNotes);
+        console.log(currentNotes);
+
+    currentNotes.push(note);
 
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'),
-        JSON.stringify({ notes: notesArr }, null, 2)
+        JSON.stringify(currentNotes, null, 2)
     );
     // return finished code to post route for response
     return note;
@@ -43,7 +47,9 @@ function validateNote(note) {
 
 //get saved notes
 app.get('/api/notes', (req, res) => { 
-    res.json(notes);
+    let results = fs.readFileSync('./db/db.json');
+    results = JSON.parse(results);
+    res.json(results);
 });
 
 //post notes with unique ID
@@ -59,30 +65,30 @@ app.post('/api/notes', (req, res) => {
         res.status(400).sendStatus('The note is not properly formatted.');
     } else {
         //add note to json file
-        const note = createNewNote(req.body, notes);
+        const note = createNewNote(req.body);
         res.json(note);
     }
 });
 
-//delete note
-app.delete('/api/notes/:id', function (req, res) {
-    let noteId = req.params.id;
-    let newId = 0;
+// //delete note
+// app.delete('/api/notes/:id', function (req, res) {
+//     let noteId = req.params.id;
+//     let newId = 0;
 
-    console.log(`Deleting note with ID ${noteId}`);
-    //filter data of current note, return current note ID when note = noteId
-    notes = notes.filter(currentNote => {
-        return currentNote.id != noteId;
-    });
-    //for current note, change note ID to string and add new Id
-    for (currentNote of notes) {
-        currentNote.id = newId.toString();
-        newId++;
-    }
-    //write to files with updated json notes
-    fs.writeFileSync('./db/db.json', JSON.stringify(notes));
-    res.json(notes);
-});
+//     console.log(`Deleting note with ID ${noteId}`);
+//     //filter data of current note, return current note ID when note = noteId
+//     notes = notes.filter(currentNotes => {
+//         return currentNotes.id != noteId;
+//     });
+//     //for current note, change note ID to string and add new Id
+//     for (currentNotes of notes) {
+//         currentNotes.id = newId.toString();
+//         newId++;
+//     }
+//     //write to files with updated json notes
+//     fs.writeFileSync('./db/db.json', JSON.stringify(notes));
+//     res.json(notes);
+// });
 
 //HTTP ROUTES
 //get notes html
