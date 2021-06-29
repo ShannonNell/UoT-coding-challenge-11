@@ -1,14 +1,1 @@
-{
-  "notes": [
-    {
-      "title": "Note Number 1",
-      "text": "The quick brown fox jumped over the lazy cat.",
-      "id": "ddd1dff0-fcd2-4e7e-b7c1-62e4797da64d"
-    },
-    {
-      "title": "Note 2",
-      "text": "Journey before destination. Strength before weakness. Life before death.",
-      "id": "b69d0550-2ce0-44c7-8748-098062793d4e"
-    }
-  ]
-}
+[{"title":"Note 2","text":"Journey before destination. Strength before weakness. Life before death.","id":"0"},{"title":"Words of Radiance","text":"Honor is dead. But I'll see what I can do.","id":"1"}]
