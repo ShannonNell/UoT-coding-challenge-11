@@ -15,23 +15,31 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-//create new note and add to json file
-function createNewNote(body) {
-    // console.log(body);
-    const note = body;
-    let currentNotes = fs.readFileSync('./db/db.json');
-        currentNotes = JSON.parse(currentNotes);
-        console.log(currentNotes);
 
-    currentNotes.push(note);
+//get saved notes
+app.get('/api/notes', (req, res) => { 
+    let results = notes;
+    res.json(results);
+});
 
-    fs.writeFileSync(
-        path.join(__dirname, './db/db.json'),
-        JSON.stringify(currentNotes, null, 2)
-    );
-    // return finished code to post route for response
-    return note;
-}
+//post notes with unique ID
+app.post('/api/notes', (req, res) => {
+    // console.log(req.body);
+    
+    //set id
+    req.body.id = shortId.uuid();
+    // console.log(req.body.id);
+    
+    //if any data in req.body is incorrect, send 400 error back
+    if (!validateNote(req.body)) {
+        res.status(400).sendStatus('The note is not properly formatted.');
+    } else {
+        //add note to json file
+        const note = req.body;
+        notes.push(note);
+        res.json(note);
+    }
+});
 
 //validate notes
 function validateNote(note) {
@@ -43,32 +51,6 @@ function validateNote(note) {
     }
     return true;
 };
-
-
-//get saved notes
-app.get('/api/notes', (req, res) => { 
-    let results = fs.readFileSync('./db/db.json');
-    results = JSON.parse(results);
-    res.json(results);
-});
-
-//post notes with unique ID
-app.post('/api/notes', (req, res) => {
-    console.log(req.body);
-    
-    //set id
-    req.body.id = shortId.uuid();
-    // console.log(req.body.id);
-    
-    //if any data in req.body is incorrect, send 400 error back
-    if (!validateNote(req.body)) {
-        res.status(400).sendStatus('The note is not properly formatted.');
-    } else {
-        //add note to json file
-        const note = createNewNote(req.body);
-        res.json(note);
-    }
-});
 
 // delete note
 app.delete('/api/notes/:id', (req, res) => {
