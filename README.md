@@ -25,7 +25,7 @@ To use this app, go to the deployed site. At the homescreen, press `get started`
 ___
 
 ## Links
-* Deployed App 
+* [Deployed App](https://mysterious-wave-31250.herokuapp.com/) 
 ___
 
 ## Tools
