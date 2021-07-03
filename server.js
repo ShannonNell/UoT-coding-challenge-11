@@ -85,24 +85,6 @@ app.delete('/api/notes/:id', (req, res) => {
     res.json('The note has been deleted.');
     console.log('The note has been deleted.');
 });
-// app.delete('/api/notes/:id', function (req, res) {
-//     let noteId = req.params.id;
-//     let newId = 0;
-
-//     console.log(`Deleting note with ID ${noteId}`);
-//     //filter data of current note, return current note ID when note = noteId
-//     notes = notes.filter(currentNote => {
-//         return currentNote.id != noteId;
-//     });
-//     //for current note, change note ID to string and add new Id
-//     for (currentNote of notes) {
-//         currentNote.id = newId.toString();
-//         newId++;
-//     }
-//     //write to files with updated json notes
-//     fs.writeFileSync('./db/db.json', JSON.stringify(notes));
-//     res.json(notes);
-// });
 
 //HTTP ROUTES
 //get notes html
