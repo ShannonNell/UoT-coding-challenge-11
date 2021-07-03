@@ -1,5 +1,5 @@
 const express = require('express');
-let { notes } = require('./db/db.json');
+const notes = require('./db/db.json');
 const fs = require('fs');
 const path = require('path');
 const shortId = require('short-uuid');
@@ -70,7 +70,21 @@ app.post('/api/notes', (req, res) => {
     }
 });
 
-//delete note
+// delete note
+app.delete('/api/notes/:id', (req, res) => {
+    //use query params to find id of note to delete
+    const deleteNote = notes.findIndex((note) => note.id === req.params.id);
+
+    //splice the note from array
+    notes.splice(deleteNote, 1);
+
+    //fs to update array after deleted
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes, null, 2), function(err) {
+        if (err) throw err;
+    });
+    res.json('The note has been deleted.');
+    console.log('The note has been deleted.');
+});
 // app.delete('/api/notes/:id', function (req, res) {
 //     let noteId = req.params.id;
 //     let newId = 0;
