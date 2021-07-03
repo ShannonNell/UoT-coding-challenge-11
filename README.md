@@ -1,56 +1,47 @@
 # Challenge 11 Express.js: Note Taker
 
 ## Description
-An application called Note Taker that can be sued to write and save notes. This application uses an Express.js back end and will save and retrieve note data from a JSON file.
+An application called Note Taker that can be sued to write, save, and delete notes. This application uses an Express.js back end and will save and retrieve note data from a JSON file.
 
 Done as a challenge for UoT's Coding Bootcamp.
 ___
 
 ## Talbe of Contents
-* [Installation](#installation)
 * [Usage](#usage)
 * [Links](#links)
-* [Features](#features)
-* [Tests](#tests)
 * [Tools](#tools)
 * [Credits](#credits)
 * [License](#license)
 * [Challenge Guidelines](#challenge-guidelines)
 ___
 
-## Installation
-
-___
-
 ## Usage
-Use this for taking all your notes.
+To use this app, go to the deployed site. At the homescreen, press `get started`. This will take you to a new page where you can click on `Note title` and `Note text` to write your own note. Press the `save` button to save your note and the `trash` button to delete it.
 
 
-
-![screenshotHere](/assets/images/))
+![Home Page](/public/assets/images/ch11_ss1.png)
+![Notes Page](/public/assets/images/ch11_ss2.png)
+![JSON](/public/assets/images/ch11_ss3.png)
 ___
 
 ## Links
 * Deployed App 
 ___
 
-
-
-## Tests
-
-___
-
 ## Tools
 * JavaScript
-* node.js
+* Node.js
 * Jest
 * fs
-* express.js
+* Express.js
+* Insomnia Core
+* Heroku
 
 ___
 
 ## Credits
-* Completed by: [Nell-GitHub](https://github.com/ShannonNell)
+* Completed by: [Shannon Nell](https://github.com/ShannonNell)
+* Based off of starter code from: [Xandromus](https://github.com/Xandromus)
 ___
 
 ## License
